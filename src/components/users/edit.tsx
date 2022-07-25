@@ -1,16 +1,18 @@
 import { useContext, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router";
-import { Context } from "../../context";
-import { User } from "../../models/user";
 import API from "../../utils/API";
 
 export default function EditUser() {
   const params = useParams();
-  const { dispatch } = useContext(Context);
+  const dispatch = useDispatch();
   const [u, setuser] = useState({ name: "", id: 0 });
   const nav = useNavigate();
   useEffect(() => {
-    API.get("/users/" + params.id).then((r) => {console.log(r.data);setuser(r.data)});
+    API.get("/users/" + params.id).then((r) => {
+      console.log(r.data);
+      setuser(r.data);
+    });
   }, []);
   return (
     <div>

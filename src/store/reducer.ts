@@ -27,5 +27,8 @@ export function reducer(state: State, action: Action): State {
     case "logout":
       localStorage.removeItem("token");
       return state;
+
+    default:
+      return state;
   }
 }

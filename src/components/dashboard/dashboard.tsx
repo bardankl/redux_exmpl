@@ -1,21 +1,10 @@
-import { useContext } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  NavLink,
-  Outlet,
-  useNavigate,
-} from "react-router-dom";
-import { Context } from "../../context";
-import Auth from "../auth/auth";
-import CreateUser from "../users/create";
-import EditUser from "../users/edit";
-import UsersList from "../users/list";
-import Users from "../users/users";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { State } from "../../store/state";
 
 export default function Dashboard() {
-  const { state, dispatch } = useContext(Context);
+  const dispatch = useDispatch();
+  const currentUser = useSelector((state: State) => state && state.currentuser);
   const navigate = useNavigate();
   return (
     <div>
@@ -31,8 +20,8 @@ export default function Dashboard() {
           <NavLink to="users">Users</NavLink>
         </div>
         <div style={{ display: "flex", gap: "30px" }}>
-          <span>Role:{state.currentuser?.role} </span>
-          <span>Name:{state.currentuser?.name} </span>
+          <span>Role:{currentUser?.role} </span>
+          <span>Name:{currentUser?.name} </span>
         </div>
         <button
           onClick={() => {

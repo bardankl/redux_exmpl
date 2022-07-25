@@ -1,12 +1,12 @@
 import { useContext, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { Context } from "../../context";
 import API from "../../utils/API";
 
 export default function Auth() {
   const [name, setName] = useState("");
   const navigate = useNavigate();
-  const { dispatch } = useContext(Context);
+  const  dispatch  = useDispatch();
   const onLogin = () => {
     const id = name === "admin" ? 1 : 2;
     API.get("auth/" + id).then((r) => {
