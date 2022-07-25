@@ -1,0 +1,24 @@
+{
+  "auth": [
+    {
+      "id": 1,
+      "name": "Admin",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "name": "User",
+      "role": "user"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Bob2"
+    },
+    {
+      "name": "qwe",
+      "id": 2
+    }
+  ]
+}
