@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { User } from "../../models/user";
+import { deleteUser } from "../../store/user-reducet";
 
 export default function UserC({ user }: { user: User }) {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ export default function UserC({ user }: { user: User }) {
       <span>{user.id}</span>
       <span>{user.name}</span>
       <button
-        onClick={() => dispatch({ type: "delete-user", payload: user.id! })}
+        onClick={() => dispatch(deleteUser(user.id!))}
       >
         delete
       </button>

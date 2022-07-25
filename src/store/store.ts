@@ -1,5 +1,8 @@
-import { createStore, Reducer } from "redux";
-import { reducer } from "./reducer";
-import { Action, State } from "./state";
+import { combineReducers, createStore, Reducer } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { authReducer } from "./auth-reducer";
+import { usersReducer } from "./user-reducet";
 
-export const store = createStore(reducer as Reducer<State, Action>);
+// const rootReducer = combineReducers(usersReducer, authReducer)
+const rootReducer = combineReducers({ users: usersReducer, auth: authReducer });
+export const store = createStore(rootReducer, composeWithDevTools());

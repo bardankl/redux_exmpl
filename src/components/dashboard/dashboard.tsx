@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { logout } from "../../store/auth-reducer";
 import { State } from "../../store/state";
 
 export default function Dashboard() {
   const dispatch = useDispatch();
-  const currentUser = useSelector((state: State) => state && state.currentuser);
+  const currentUser = useSelector((state: any) => state.users.currentuser);
   const navigate = useNavigate();
   return (
     <div>
@@ -25,7 +26,7 @@ export default function Dashboard() {
         </div>
         <button
           onClick={() => {
-            dispatch({ type: "logout" });
+            dispatch(logout());
             navigate("/login");
           }}
         >

@@ -9,6 +9,7 @@ import Users from "./components/users/users";
 import { useEffect } from "react";
 import API from "./utils/API";
 import { useDispatch } from "react-redux";
+import { login } from "./store/auth-reducer";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,10 +18,8 @@ function App() {
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("token")!);
     if (token) {
-      console.log('!!!!')
       API.get("auth/" + token).then((r) => {
-        console.log(r.data)
-        dispatch({ type: "login", payload: r.data });
+        dispatch(login(r.data));
       });
     } else {
       console.log("!!!");
