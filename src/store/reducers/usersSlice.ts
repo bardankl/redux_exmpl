@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "../../models/user";
-// import { fetchAllUsers } from "../asyncActions/users";
+import { fetchUsers } from "../asyncActions/users";
 
 interface UserState {
   users: User[];
@@ -17,25 +17,35 @@ const initialState: UserState = {
 export const userSlice = createSlice({
   name: "users",
   initialState,
-  reducers: {
-    usersFetching(state) {
+  reducers: {},
+  // reducers: {
+  //   usersFetching(state) {
+  //     state.isLoading = true;
+  //   },
+  //   usersFetchingSuccess(state, action: PayloadAction<User[]>) {
+  //     state.isLoading = false;
+  //     state.error = "";
+  //     state.users = action.payload;
+  //   },
+  //   usersFetchingFailed(state, action: PayloadAction<string>) {
+  //     state.isLoading = false;
+  //     state.error = action.payload;
+  //   },
+  // },
+  extraReducers: {
+    [fetchUsers.pending.type]: (state) => {
       state.isLoading = true;
     },
-    usersFetchingSuccess(state, action: PayloadAction<User[]>) {
+    [fetchUsers.fulfilled.type]: (state, action: PayloadAction<User[]>) => {
       state.isLoading = false;
       state.error = "";
       state.users = action.payload;
     },
-    usersFetchingFailed(state, action: PayloadAction<string>) {
+    [fetchUsers.rejected.type]: (state, action: PayloadAction<string>) => {
       state.isLoading = false;
       state.error = action.payload;
     },
   },
-  // extraReducers: {
-  //   [fetchAllUsers.pending.type]: () => {},
-  //   [fetchAllUsers.fulfilled.type]: () => {},
-  //   [fetchAllUsers.rejected.type]: () => {},
-  // },
 });
 
 export default userSlice.reducer;
