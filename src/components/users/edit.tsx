@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router";
-import { updateUser } from "../../store/user-reducet";
+// import { updateUser } from "../../store/user-reducet";
 import API from "../../utils/API";
 
 export default function EditUser() {
@@ -25,7 +25,7 @@ export default function EditUser() {
       <button
         onClick={() => {
           API.put("users/" + u.id, u).then((r) => {
-            dispatch(updateUser(u));
+            // dispatch(updateUser(u));
             nav("/users");
           });
         }}

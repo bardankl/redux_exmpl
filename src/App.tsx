@@ -9,18 +9,18 @@ import Users from "./components/users/users";
 import { useEffect } from "react";
 import API from "./utils/API";
 import { useDispatch } from "react-redux";
-import { login } from "./store/auth-reducer";
+import { useAppDispatch } from "./hooks/redux";
+import { login } from "./store/asyncActions/auth";
 
 function App() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("token")!);
     if (token) {
-      API.get("auth/" + token).then((r) => {
-        dispatch(login(r.data));
-      });
+      dispatch(login(token))
+
     } else {
       console.log("!!!");
       navigate("/login");

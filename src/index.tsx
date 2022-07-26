@@ -5,11 +5,11 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
-import { store } from "./store/store";
+import { setupStore } from "./store/store";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
-
+const store = setupStore();
 root.render(
   <React.StrictMode>
     <BrowserRouter>

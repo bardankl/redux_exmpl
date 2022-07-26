@@ -1,15 +1,20 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { fetchUsers } from "../../store/asyncActions/users";
-import { getUsers } from "../../store/user-reducet";
+import { userSlice } from "../../store/reducers/usersSlice";
 import API from "../../utils/API";
 import UserC from "./user";
 
 export default function UsersList() {
-  const dispatch = useDispatch();
-  const users = useSelector((state: any) => state && state.users.users);
+  const dispatch = useAppDispatch();
+  const { users, isLoading, error } = useAppSelector(
+    (state) => state.usersReducer
+  );
+
   useEffect(() => {
-    dispatch(fetchUsers() as any);
+    dispatch(fetchUsers())
+    // API.get("/users").then((r) => dispatch(fetchUsers(r.data)));
   }, []);
 
   return (

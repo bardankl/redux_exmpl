@@ -1,11 +1,12 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import { logout } from "../../store/auth-reducer";
-import { State } from "../../store/state";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 
 export default function Dashboard() {
-  const dispatch = useDispatch();
-  const currentUser = useSelector((state: any) => state.users.currentuser);
+  const dispatch = useAppDispatch();
+  const { currentUser, error, isLoading } = useAppSelector(
+    (state) => state.authReducer
+  );
   const navigate = useNavigate();
   return (
     <div>
@@ -26,7 +27,7 @@ export default function Dashboard() {
         </div>
         <button
           onClick={() => {
-            dispatch(logout());
+            // dispatch(logout());
             navigate("/login");
           }}
         >

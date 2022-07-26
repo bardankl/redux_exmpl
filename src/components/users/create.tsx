@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { createUser } from "../../store/user-reducet";
+// import { createUser } from "../../store/user-reducet";
 import API from "../../utils/API";
 
 export default function CreateUser() {
@@ -18,7 +18,7 @@ export default function CreateUser() {
       <button
         onClick={() => {
           API.post("/users", { name }).then((r) => {
-            dispatch(createUser(r.data));
+            // dispatch(createUser(r.data));
             nav("/users");
           });
         }}
